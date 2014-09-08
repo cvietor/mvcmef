@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition.Hosting;
-
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -12,7 +12,7 @@ namespace Web.Core.Infrastructure
     public class MefControllerFactory : IControllerFactory
     {
         private string pluginPath;
-        private DirectoryCatalog catalog;
+        private AggregateCatalog catalog;
         private CompositionContainer container;
 
         private DefaultControllerFactory defaultControllerFactory;
@@ -20,11 +20,27 @@ namespace Web.Core.Infrastructure
         public MefControllerFactory(string pluginPath)
         {
             this.pluginPath = pluginPath;
-            this.catalog = new DirectoryCatalog(pluginPath);
+            this.catalog = GetAggregateCatalog(pluginPath);
             this.container = new CompositionContainer(catalog);
 
             this.defaultControllerFactory = new DefaultControllerFactory();
+
         }
+
+        private AggregateCatalog GetAggregateCatalog(string pluginPath)
+        {
+            var aggregateCatalog = new AggregateCatalog();
+            aggregateCatalog.Catalogs.Add(new DirectoryCatalog(pluginPath));
+
+            var directories = Directory.GetDirectories(pluginPath, "*", SearchOption.AllDirectories);
+            foreach (var directory in directories)
+            {
+                aggregateCatalog.Catalogs.Add(new DirectoryCatalog(directory));
+            }
+
+            return aggregateCatalog;
+        }
+
 
         #region IControllerFactory Members
 
@@ -42,6 +58,7 @@ namespace Web.Core.Infrastructure
                 if (export != null) {
                     controller = export.Value;
                 }
+
             }
 
             if (controller == null)

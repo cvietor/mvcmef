@@ -14,7 +14,7 @@ namespace Web.PluginA.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Blablabla";
+            ViewBag.Message = "Viewbag Message Blablabla";
             return View();
         }
     }

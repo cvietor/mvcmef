@@ -1,35 +1,66 @@
-﻿@model dynamic
-@{
+﻿@{
     ViewBag.Title = "Activate Packages";
 }
 
 <h2>@ViewBag.Title</h2>
 
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>
-                <span>Package name</span>
-            </th>
-            <th>
-                #
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        
-        @foreach (var file in Model)
-        {
+<div id="activatePackagesWrapper">
+    <table class="table table-striped">
+        <thead>
             <tr>
                 <th>
-                    <span>@file</span>
+                    <span>Package name</span>
                 </th>
                 <th>
-                    <button class="btn-primary ">Activate</button>
+                    #
                 </th>
             </tr>
-        }
-    </tbody>
+        </thead>
+        <tbody data-bind="foreach: packages">
+            <tr>
+                <th>
+                    <span data-bind="text: $data"></span>
+                </th>
+                <th>
+                    <button class="btn-primary" data-bind="click: $root.activatePlugin">Activate</button>
+                </th>
+            </tr>
+        </tbody>
 
-</table>
+    </table>
+</div>
+
+
+@section scripts {
+    <script src="~/Scripts/knockout-3.2.0.js"></script>
+    <script type="text/javascript">
+
+        function ActivatePackagesViewModel() {
+            var packages = ko.observableArray();
+
+            (function loadPluginNames() {
+                $.getJSON('/Plugin/GetPluginPackageNames', function(result) {
+                    packages(result);
+                });
+            }());
+
+            function activatePlugin(plugin) {
+                console.log(plugin);
+                var param = { file: plugin };
+
+                $.post('/Plugin/ActivatePackages', param, function() {
+                    console.log('plugin activated');
+                });
+            };
+            return {
+                packages: packages,
+                activatePlugin: activatePlugin
+            }
+        }
+
+        $(function () {
+            ko.applyBindings(new ActivatePackagesViewModel(), document.getElementById('activatePackagesWrapper'));
+        });
+    </script>
+}
+

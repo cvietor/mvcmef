@@ -25,10 +25,28 @@ namespace Web.Administration.Controllers
 
         public ViewResult ActivatePackages()
         {
-            var rawFiles = Directory.GetFiles(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "PluginPackages"));
+            return View();
+        }
+
+        public JsonResult GetPluginPackageNames()
+        {
+            string pluginPackagesDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "PluginPackages");
+            var rawFiles = Directory.GetFiles(pluginPackagesDirectory);
             var files = rawFiles.Select(file => Path.GetFileName(file)).ToList();
 
-            return View(files);
+            return Json(files, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public void ActivatePackages(string file)
+        {
+            var x = file;
+            var pluginFullPath = @"C:\Users\cv230985\Downloads\MvcMefDemo\Web.Administration\PluginPackages\" + file;
+            var solutionDir = @"C:\Users\cv230985\Downloads\MvcMefDemo\";
+            var coreDir = @"C:\Users\cv230985\Downloads\MvcMefDemo\Web.Core\Plugins\";
+            var targetPath = coreDir + file;
+
+            ZipUtil.DecompressFile(pluginFullPath, targetPath);
         }
 
         [HttpPost]
@@ -36,10 +54,10 @@ namespace Web.Administration.Controllers
         {
             string packageName = Path.GetDirectoryName(files.FirstOrDefault().FileName).Split(Path.PathSeparator).FirstOrDefault();
 
-            string zipContainerPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "PluginPackages", string.Format("{0}_{1}.zip", packageName, DateTime.Now.Ticks));
+            string zipContainerPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "PluginPackages", string.Format("{0}.zip", packageName));
             foreach (var file in files)
             {
-                //TODO: file names with spaces resulting in %20 files
+                //TODO: file names with spaces resulting in %20 fragments
                 string fileName = file.FileName.Replace(packageName + "/", string.Empty).Replace("/", Path.DirectorySeparatorChar.ToString());
                 ZipUtil.AddFileToZip(zipContainerPath, fileName, file.InputStream);
             }
