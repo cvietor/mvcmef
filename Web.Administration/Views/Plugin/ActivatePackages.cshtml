@@ -1,0 +1,35 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "Activate Packages";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                <span>Package name</span>
+            </th>
+            <th>
+                #
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        @foreach (var file in Model)
+        {
+            <tr>
+                <th>
+                    <span>@file</span>
+                </th>
+                <th>
+                    <button class="btn-primary ">Activate</button>
+                </th>
+            </tr>
+        }
+    </tbody>
+
+</table>

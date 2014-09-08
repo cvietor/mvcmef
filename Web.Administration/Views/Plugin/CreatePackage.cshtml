@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Create a plugin package";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("CreatePackage", "Plugin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <span class="col-md-3">
+            <label for="file">Select directory:</label>
+        </span>
+        <span class="col-md-5">
+            <input type="file" name="files" multiple webkitdirectory />
+        </span>
+        <span class="col-md-4">
+            <input type="submit" value="Create & upload package" />
+        </span>
+    </div>
+}
