@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Web.PluginB.Views.PluginB
+namespace Web.PluginA.Views.PluginA
 {
     using System;
     using System.Collections.Generic;
@@ -28,33 +28,38 @@ namespace Web.PluginB.Views.PluginB
     using System.Web.WebPages;
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("RazorGenerator", "2.0.0.0")]
-    [System.Web.WebPages.PageVirtualPathAttribute("~/Views/PluginB/Index.cshtml")]
-    public partial class Index : System.Web.Mvc.WebViewPage<dynamic>
+    [System.Web.WebPages.PageVirtualPathAttribute("~/Views/PluginA/Index.cshtml")]
+    public partial class Index : System.Web.Mvc.WebViewPage
     {
         public Index()
         {
         }
         public override void Execute()
         {
+
+
             
-            #line 2 "..\..\Views\PluginB\Index.cshtml"
+            #line 2 "..\..\Views\PluginA\Index.cshtml"
   
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-            
-            #line default
-            #line hidden
-WriteLiteral("\r\n\r\n\r\n<h2>Index</h2>\r\nMessage from PluginB: ");
-
-            
-            #line 9 "..\..\Views\PluginB\Index.cshtml"
-                 Write(ViewBag.Message);
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n\r\n");
+WriteLiteral("\r\n\r\n<h2>Index</h2>\r\n\r\n Ich bin die Message vom PluginController: ");
+
+
+            
+            #line 10 "..\..\Views\PluginA\Index.cshtml"
+                                      Write(ViewBag.Message);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n");
+
 
         }
     }
