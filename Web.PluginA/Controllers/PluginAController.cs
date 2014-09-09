@@ -9,7 +9,6 @@ namespace Web.PluginA.Controllers
 {
     [Export(typeof(IController))]
     [ExportMetadata("ControllerName", "PluginA")]
-    [ExportMetadata("PluginName", "PluginA")]
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class PluginAController : Controller
     {

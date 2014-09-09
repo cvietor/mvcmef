@@ -15,9 +15,10 @@ namespace Web.Core.Infrastructure.RouteConstraints
         public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
         {
             // returns true, if value of parameterName "pluginName" has a matching assembly file in the plugins folder
-            var directories = Directory.GetDirectories(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plugins"), "*", SearchOption.AllDirectories);
+            var directories = Directory.GetDirectories(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plugins"), "*", SearchOption.TopDirectoryOnly);
             var plugins = directories.Select(d => Path.GetFileName(d));
-            return plugins.FirstOrDefault(d => d.ToLowerInvariant() == values[parameterName].ToString().ToLowerInvariant()) != null;
+            var result = plugins.FirstOrDefault(d => d.ToLowerInvariant() == values[parameterName].ToString().ToLowerInvariant()) != null;
+            return result;
         }
     }
 }

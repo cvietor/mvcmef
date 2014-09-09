@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Administration", "Web.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{C69942BE-D726-4141-84C7-665E4EFAD61A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.PluginC", "Web.PluginC\Web.PluginC.csproj", "{568FC388-F579-43F8-A6E9-63DAB3CB96A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{C69942BE-D726-4141-84C7-665E4EFAD61A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C69942BE-D726-4141-84C7-665E4EFAD61A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C69942BE-D726-4141-84C7-665E4EFAD61A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{568FC388-F579-43F8-A6E9-63DAB3CB96A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{568FC388-F579-43F8-A6E9-63DAB3CB96A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{568FC388-F579-43F8-A6E9-63DAB3CB96A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{568FC388-F579-43F8-A6E9-63DAB3CB96A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
