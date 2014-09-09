@@ -9,12 +9,13 @@ namespace Web.PluginA.Controllers
 {
     [Export(typeof(IController))]
     [ExportMetadata("ControllerName", "PluginA")]
+    [ExportMetadata("PluginName", "PluginA")]
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class PluginAController : Controller
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Viewbag Message Blablabla";
+            ViewBag.Message = "Viewbag Message Blablabla 222";
             return View();
         }
     }

@@ -44,15 +44,19 @@ namespace Utils
         {
             using (Package zip = System.IO.Packaging.Package.Open(zipFilename, FileMode.Open))
             {
-                var binPart = zip.GetParts().Where(p => p.Uri.ToString().Contains("/bin/" + Path.GetFileNameWithoutExtension(zipFilename))).FirstOrDefault().Uri;
-                var viewPart = zip.GetParts().Where(p => p.Uri.ToString().Contains("/Views/"));
-
-                var assemblyPart = zip.GetPart(binPart);
-                Extract(assemblyPart, outPath);
-
-                foreach (var part in viewPart)
+                var firstOrDefault = zip.GetParts().Where(p => p.Uri.ToString().Contains("/bin/" + Path.GetFileNameWithoutExtension(zipFilename))).FirstOrDefault();
+                if (firstOrDefault != null)
                 {
-                    Extract(part, outPath);
+                    var binPart = firstOrDefault.Uri;
+                    var viewPart = zip.GetParts().Where(p => p.Uri.ToString().Contains("/Views/"));
+
+                    var assemblyPart = zip.GetPart(binPart);
+                    Extract(assemblyPart, outPath);
+
+                    foreach (var part in viewPart)
+                    {
+                        Extract(part, outPath);
+                    }
                 }
             }
         }

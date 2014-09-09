@@ -132,43 +132,34 @@ WriteLiteral(">\r\n                <ul");
 
 WriteLiteral(" class=\"nav navbar-nav\"");
 
-WriteLiteral(">\r\n                    <li>");
+WriteLiteral(">\r\n                    <li>\r\n                        <a");
 
-            
-            #line 24 "..\..\Views\Shared\_Layout.cshtml"
-                   Write(Html.ActionLink("Home", "Index", "Home"));
+WriteLiteral(" href=\"/\"");
 
-            
-            #line default
-            #line hidden
-WriteLiteral("</li>\r\n                    <li>");
+WriteLiteral(">Home</a>\r\n                    </li>\r\n                    <li>\r\n                 " +
+"       <a");
 
-            
-            #line 25 "..\..\Views\Shared\_Layout.cshtml"
-                   Write(Html.ActionLink("About", "About", "Home"));
+WriteLiteral(" href=\"/Home/About\"");
 
-            
-            #line default
-            #line hidden
-WriteLiteral("</li>\r\n                    <li>");
+WriteLiteral(">About</a>\r\n                    </li>\r\n                    <li>\r\n                " +
+"        <a");
 
-            
-            #line 26 "..\..\Views\Shared\_Layout.cshtml"
-                   Write(Html.ActionLink("Contact", "Contact", "Home"));
+WriteLiteral(" href=\"/Home/Contact\"");
 
-            
-            #line default
-            #line hidden
-WriteLiteral("</li>\r\n                    <li><a");
+WriteLiteral(">Contact</a>\r\n                    </li>\r\n                    <li><a");
 
-WriteLiteral(" href=\"/Web.PluginA.zip/PluginA/Index\"");
+WriteLiteral(" href=\"/Web.PluginA/PluginA/Index\"");
 
-WriteLiteral(">PluginA</a></li>\r\n                </ul>\r\n");
+WriteLiteral(">PluginA</a></li>\r\n                    <li><a");
+
+WriteLiteral(" href=\"/Web.PluginB/PluginB/Index\"");
+
+WriteLiteral(">PluginB</a></li>\r\n                </ul>\r\n");
 
 WriteLiteral("                ");
 
             
-            #line 29 "..\..\Views\Shared\_Layout.cshtml"
+            #line 36 "..\..\Views\Shared\_Layout.cshtml"
            Write(Html.Partial("_LoginPartial"));
 
             
@@ -183,7 +174,7 @@ WriteLiteral(">\r\n");
 WriteLiteral("        ");
 
             
-            #line 34 "..\..\Views\Shared\_Layout.cshtml"
+            #line 41 "..\..\Views\Shared\_Layout.cshtml"
    Write(RenderBody());
 
             
@@ -192,7 +183,7 @@ WriteLiteral("        ");
 WriteLiteral("\r\n        <hr />\r\n        <footer>\r\n            <p>&copy; ");
 
             
-            #line 37 "..\..\Views\Shared\_Layout.cshtml"
+            #line 44 "..\..\Views\Shared\_Layout.cshtml"
                  Write(DateTime.Now.Year);
 
             
@@ -203,7 +194,7 @@ WriteLiteral(" - My ASP.NET Application</p>\r\n        </footer>\r\n    </div>\r
 WriteLiteral("    ");
 
             
-            #line 41 "..\..\Views\Shared\_Layout.cshtml"
+            #line 48 "..\..\Views\Shared\_Layout.cshtml"
 Write(Scripts.Render("~/bundles/jquery"));
 
             
@@ -214,7 +205,7 @@ WriteLiteral("\r\n");
 WriteLiteral("    ");
 
             
-            #line 42 "..\..\Views\Shared\_Layout.cshtml"
+            #line 49 "..\..\Views\Shared\_Layout.cshtml"
 Write(Scripts.Render("~/bundles/bootstrap"));
 
             
@@ -225,7 +216,7 @@ WriteLiteral("\r\n");
 WriteLiteral("    ");
 
             
-            #line 43 "..\..\Views\Shared\_Layout.cshtml"
+            #line 50 "..\..\Views\Shared\_Layout.cshtml"
 Write(RenderSection("scripts", required: false));
 
             

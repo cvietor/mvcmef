@@ -16,13 +16,15 @@ namespace Web.Core
     {
         protected void Application_Start()
         {
-            ControllerBuilder.Current.SetControllerFactory(new MefControllerFactory(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plugins")));
+            var pluginDirPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plugins", "temp");
+            ControllerBuilder.Current.SetControllerFactory(new MefControllerFactory(pluginDirPath));
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new CustomViewEngine());
         }
     }
